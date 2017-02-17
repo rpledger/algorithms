@@ -30,20 +30,19 @@ def merge_and_calc_split_inversions(B, C, s):
 	j = 0
 	D = []
 	count = 0
-	for k in range(0,s):
-		if i >= np.size(B):
-			D = np.insert(D, k, C[j])
-			j+=1
-		elif j >= np.size(C):
-			D =np.insert(D, k, B[i])
-			i+=1 
-		elif B[i] < C[j]:
-			D = np.insert(D, k, B[i])
+	while i < np.size(B) and j < np.size(C):
+		if B[i] < C[j]:
+			D = np.append(D, B[i])
 			i+=1
 		elif C[j] < B[i]:
-			D = np.insert(D, k, C[j])
+			D = np.append(D, C[j])
 			j+=1
 			count+=np.size(B)-i
+
+	if i<np.size(B):
+		D = np.append(D, B[i:]) 
+	if j<np.size(B):
+		D = np.append(D, C[j:])
 	return D, count
 
 def sort_and_calc_inversions(A, s):
