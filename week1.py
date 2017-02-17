@@ -12,15 +12,18 @@ def get_args():
 	file = args.file
 	return samples, file
 
+def read_samples(samples, file):
+	print "\nReading {} inputs from file {}\n".format(samples, file.name)
+	arr[samples] = []
+	for s in range(0, samples):
+		try:
+			number = int(file.readline())
+
+		except (TypeError, ValueError):
+			print "Sample {} is not an integer".format(s)
 
 samples, file = get_args()
+arr = read_samples(samples, file)
 
 
-print "\nReading {} inputs from file {}\n".format(samples, file.name)
-arr[samples] = []
-for s in range(0, samples):
-	try:
-		number = int(file.readline())
 
-	except (TypeError, ValueError):
-		print "Sample {} is not an integer".format(s)
