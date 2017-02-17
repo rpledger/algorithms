@@ -25,23 +25,45 @@ def read_samples(samples, file):
 
 	return A
 
-def calculate_inversions(s, A):
+def merge_and_calc_split_inversions(B, C, s):
+	i = 0
+	j = 0
+	D = []
+	for k in range(0,s):
+		if i >= np.size(B):
+			D = np.insert(D, k, C[j])
+			j+=1
+		elif j >= np.size(C):
+			D =np.insert(D, k, B[i])
+			i+=1 
+		elif B[i] < C[j]:
+			D = np.insert(D, k, B[i])
+			i+=1
+		elif C[j] < B[i]:
+			D = np.insert(D, k, C[j])
+			j+=1
+	return D, 0
+
+def sort_and_calc_inversions(A, s):
 	# Base Case
-	if s <= 1:
-		return A
+	if s == 1:
+		return A, 0
+	else:
+		# Divide
+		B, C = np.array_split(A, 2)
 
-	# Divide
-	B, C = np.array_split(A, 2)
+		# Conquer
+		B,x = sort_and_calc_inversions(B, s/2)
+		C, y = sort_and_calc_inversions(C, s/2)
 
-	# Conquer
-	x = calculate_inversions(s/2, B)
-	y = calculate_inversions(s/2, C)
-	#z = calculate_split_inversions(s, A)
+		# Merge
+		D, z= merge_and_calc_split_inversions(B, C, s)
 
-	# Merge
+		return D, x+y+z
 
 samples, file = get_args()
 A = read_samples(samples, file)
 print "Input array: {}".format(A)
-inversions = calculate_inversions(samples, A)
+A_sort, inversions = sort_and_calc_inversions(A, samples)
+print A_sort
 
