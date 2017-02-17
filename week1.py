@@ -14,15 +14,13 @@ def get_args():
 
 
 samples, file = get_args()
-#while True:
-#	try: 
-#		samples = int(raw_input("How many inputs?: "))
-#		break
-#	except ValueError:
-#		print("Oops! That was not a valid number. Try again...")
-#
-#file_name = input("File name?: ")
-#f = open(file_name, 'r')
 
-print "Reading {} inputs from file {}".format(samples, file.name)
 
+print "\nReading {} inputs from file {}\n".format(samples, file.name)
+arr[samples] = []
+for s in range(0, samples):
+	try:
+		number = int(file.readline())
+
+	except (TypeError, ValueError):
+		print "Sample {} is not an integer".format(s)
