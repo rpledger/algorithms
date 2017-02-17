@@ -22,7 +22,9 @@ def read_samples(samples, file):
 			A= np.append(A, number)
 		except (ValueError):
 			print "Sample {} is not an integer".format(s)
-
+			file.close()
+			exit()
+	file.close()
 	return A
 
 def merge_and_calc_split_inversions(B, C, s):
