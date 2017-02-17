@@ -34,7 +34,10 @@ def calculate_inversions(s, A):
 	B, C = np.array_split(A, 2)
 
 	# Conquer
-	
+	x = calculate_inversions(s/2, B)
+	y = calculate_inversions(s/2, C)
+	#z = calculate_split_inversions(s, A)
+
 	# Merge
 
 samples, file = get_args()
