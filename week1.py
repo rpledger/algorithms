@@ -51,11 +51,12 @@ def sort_and_calc_inversions(A, s):
 	count = 0
 	if s == 1:
 		return A, 0
-	elif s == 2:
-		if A[1] < A[0]:
-			A = np.array([A[1], A[0]])
-			count = 1
-		return A, count
+	#elif s == 2:
+	#	print "Got here?"
+	#	if A[1] < A[0]:
+	#		A = np.array([A[1], A[0]])
+	#		count = 1
+	#	return A, count
 	else:
 		# Divide
 		B, C = np.array_split(A, 2)
