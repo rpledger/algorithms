@@ -48,10 +48,10 @@ def quick_sort(A, l, r):
 	return A
 
 
-file = "../week1-merge-sort/test.txt"
+file = "QuickSort.txt"
 num = int(raw_input("How many samples?: "))
 A = read_samples(num, file)
-print "Input Array: {}".format(A)
+#print "Input Array: {}".format(A)
 A_sorted = quick_sort(A, 0, num)
-print "Array sorted: {}".format(A_sorted)
+#print "Array sorted: {}".format(A_sorted)
 print "Number of Comparisions: {}".format(comparision_count)
