@@ -19,15 +19,11 @@ def choose_pivot_first(A, l, r):
 	p = 0
 	if p != 0:
 		A[l], A[p] = A[p], A[l]
-		print "Pivot: {}".format(A[p])
 	return A
 
 def partition(A, l, r):
-	print "Partition L: {}, R: {}".format(l, r)
 	p = A[l]
-	print "Pivot: {}".format(p)
 	i = l + 1
-	print i
 	for j in range (l+1, r):
 		if A[j] < p:
 			A[i], A[j] = A[j], A[i]
@@ -37,31 +33,25 @@ def partition(A, l, r):
 	return A, pi
 
 def quick_sort(A, l, r):
-	print "QS L: {}, R: {}".format(l, r)
 	global comparision_count
 	comparision_count = comparision_count + r - l - 1
 
 	if (r-l) == 1:
-		print "ONE"
 		return A
 	p = 0
 	A = choose_pivot_first(A, l, r)
-	print "Chose pivot: {}".format(A)
 	A, p = partition(A, l, r)
-	print "Partitioned: {}".format(A)
 	if p - l > 0:
 		A = quick_sort(A, l, p)
-	print "QS-left: {}".format(A)
 	if r - (p + 1) > 0:
 		A = quick_sort(A, p+1, r)
-	print "QS-right: {}".format(A)
 	return A
 
 
 file = "../week1-merge-sort/test.txt"
 num = int(raw_input("How many samples?: "))
 A = read_samples(num, file)
-print A
+print "Input Array: {}".format(A)
 A_sorted = quick_sort(A, 0, num)
-print "A sorted: {}".format(A_sorted)
+print "Array sorted: {}".format(A_sorted)
 print "Number of Comparisions: {}".format(comparision_count)
