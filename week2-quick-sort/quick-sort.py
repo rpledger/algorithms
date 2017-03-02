@@ -15,12 +15,24 @@ def read_samples(num, file):
 	return A
 
 def choose_pivot_first(A, l, r)
-	return 0
+	p = 0
+	if p != 0:
+		A[l], A[p] = A[p], A[l]
+	return A
+
+def partition(A, l, r)
+	p = A[l]
+	i = l + 1
+	for j in range (l+1, r):
+		if A[j] < p:
+			A[i], A[j] = A[j], A[i]
+			i = i + 1
+	return A
 
 def quick_sort(A, l, r)
     comparision_count = comparision_count + r - l - 1
 	if num = 1 return A
-	p = choose_pivot_first(A, l, r)
+	A = choose_pivot_first(A, l, r)
 	partition(A, l, r)
 	quick_sort(A, l, p)
 	quick_sort(A, p+1, r)
