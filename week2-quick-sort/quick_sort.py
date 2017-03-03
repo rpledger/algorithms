@@ -16,13 +16,22 @@ def read_samples(num, file):
 	return A
 
 def choose_pivot(A, l, r, method):
+	p = 0
+	pivots = []
 	if method == 0:
 		p = 0
 	elif method == 1:
 		p = r - 1
 	elif method == 2: 
-		p = 0
-	#p = 0
+		first = l
+		last = r -1
+		middle = int(((r- l)/2) + l)
+		if (r-l) % 2 == 0:
+			middle = middle -1
+		pivots = [A[first], A[middle], A[last]]
+		pivots.sort()
+		p = A.index(pivots[1])
+
 	if p != 0:
 		A[l], A[p] = A[p], A[l]
 	return A, p
@@ -40,7 +49,7 @@ def partition(A, l, r):
 
 def quick_sort(A, l, r, method):
 	global comparision_count
-	comparision_count = comparision_count + r - l - 1
+	comparision_count = comparision_count + (r - l) - 1
 
 	p = 0
 	if (r-l) == 1:
