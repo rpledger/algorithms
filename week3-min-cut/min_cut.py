@@ -13,7 +13,13 @@ def read_input_data(file, size):
 	#print len(adjacency)
 	return adjacency
 
-#def remove_self_loops():
+def remove_self_loops(super_node, non_super_node, adj):
+	print adj
+	if super_node in adj:
+		adj.remove(super_node)
+	if non_super_node in adj:
+		adj.remove(non_super_node)
+	return adj
 
 def edge_contraction(v, e, graph):
 	super_node = min(v, e)
@@ -21,6 +27,7 @@ def edge_contraction(v, e, graph):
 	for adj in graph[non_super_node]:
 		graph[super_node].append(adj)
 	graph.pop(non_super_node)
+	remove_self_loops(super_node, non_super_node, graph[super_node])
 	return graph
 
 def choose_random_vertex(seed, size):
@@ -41,6 +48,7 @@ def min_cut(seed, graph):
 	# Do Edge Contraction
 	graph = edge_contraction(v, e, graph)
 	# Remove self loops
+
 
 if __name__ == '__main__':
 	graph = read_input_data('test.txt', 3)
