@@ -16,9 +16,12 @@ def read_input_data(file, size):
 #def remove_self_loops():
 
 def edge_contraction(v, e, graph):
-	for adj in graph[v]:
-		if graph
-
+	super_node = min(v, e)
+	non_super_node = max(v,e)
+	for adj in graph[non_super_node]:
+		graph[super_node].append(adj)
+	graph.pop(non_super_node)
+	return graph
 
 def choose_random_vertex(seed, size):
 	random.seed(seed)
@@ -36,6 +39,8 @@ def min_cut(seed, graph):
 	# Choose random edge from that list
 	e = choose_random_edge(seed, graph[v])
 	# Do Edge Contraction
+	graph = edge_contraction(v, e, graph)
+	# Remove self loops
 
 if __name__ == '__main__':
 	graph = read_input_data('test.txt', 3)
