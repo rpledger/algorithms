@@ -15,18 +15,26 @@ def read_input_data(file, size):
 
 #def remove_self_loops():
 
-#def edge_contraction(e):
+def edge_contraction(v, e, graph):
+	for adj in graph[v]:
+		if graph
+
 
 def choose_random_vertex(seed, size):
 	random.seed(seed)
-	vertex = random.randint(0, (size - 1))
-	return vertex
+	vertex = random.randint(1, size)
+	return str(vertex)
 
+def choose_random_edge(seed, adj_list):
+	random.seed(seed)
+	edge = adj_list[random.randint(0, (len(adj_list)) - 1)]
+	return edge
 
-
-#def min_cut():
+def min_cut(seed, graph):
 	# Choose random vertex
+	v = choose_random_vertex(seed, len(graph))
 	# Choose random edge from that list
+	e = choose_random_edge(seed, graph[v])
 	# Do Edge Contraction
 
 if __name__ == '__main__':
