@@ -6,3 +6,5 @@ https://www.coursera.org/learn/algorithm-design-analysis/
 Week 1: Merge Sort
 
 Week 2: Quick Sort
+
+Week 3: Minimum Cut
